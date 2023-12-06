@@ -272,18 +272,19 @@ namespace Курсач
             }
             if (ParseInput())
             {
+                InitializePictureBoxes();
                 currentIndex = 0;
-                if (arrayElementPictureBoxes.Length > 14 && arrayElementPictureBoxes.Length > 0)
+                if (arrayElementPictureBoxes.Length > 14 && arrayElementPictureBoxes.Length != 0)
                 {
 
                     foreach (PictureBox pictureBox in arrayElementPictureBoxes)
                     {
                         this.Controls.Remove(pictureBox);
                     }
-                    MessageBox.Show("Введите меньше 14 чисел");
+                    CustomMessageBox msg = new CustomMessageBox("Введите меньше 14 чисел");
+                    msg.ShowDialog();
                     return;
                 }
-                InitializePictureBoxes();
                 UpdatePictureBoxes();
                 VisualizeSearchh();
             }
@@ -445,6 +446,8 @@ namespace Курсач
                 {
                     this.Controls.Remove(pictureBox);
                 }
+                textBox1.Text = string.Empty;
+                textBox2.Text = string.Empty;
                 // UpdatePictureBoxes();
             }
             catch (IndexOutOfRangeException ex)
